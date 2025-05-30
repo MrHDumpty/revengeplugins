@@ -48,7 +48,7 @@ commands.push(registerCommand({
         }
     ],
     execute: (args, ctx) => args[2] ? ClydeUtils.sendBotMessage(ctx.channel.id, Math.random() * (args[1].value - args[0].value) + args[0].value) : ClydeUtils.sendMessage(ctx.channel.id, Math.random() * (args[1].value - args[0].value) + args[0].value);
-))};
+}));
 
 export const onUnload = () => {
     for (const unregisterCommands of commands) unregisterCommands();
