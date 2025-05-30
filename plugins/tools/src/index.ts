@@ -45,6 +45,7 @@ commands.push(registerCommand({
             description: "Determines if the message is visible to other users.",
             displayDescription: "Determines if the message is visible to other users",
             required: false,
+            type: ApplicationCommandOptionType.BOOLEAN,
         }
     ],
     execute: (args, ctx) => args[2] ? ClydeUtils.sendBotMessage(ctx.channel.id, Math.random() * (args[1].value - args[0].value) + args[0].value) : ClydeUtils.sendMessage(ctx.channel.id, Math.random() * (args[1].value - args[0].value) + args[0].value)
