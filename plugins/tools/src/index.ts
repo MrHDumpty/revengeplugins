@@ -1,7 +1,7 @@
 import { registerCommand } from "@vendetta/commands";
-import { messageUtil } from "@vendetta/metro/common";
+import { findByProps } from "@vendetta/metro";
 let commands = [];
-
+const messageUtil = findByProps("sendBotMessage");
 const ApplicationCommandOptionType = {
     SUB_COMMAND: 1,
     SUB_COMMAND_GROUP: 2,
@@ -55,7 +55,8 @@ commands.push(registerCommand({
                 messageUtil.sendMessage(ctx.channel.id, (Math.random() * (args[1].value - args[0].value) + args[0].value));
             }
         } catch(e) {
-            messageUtil.sendBotMessage(ctx.channel.id, e.message);
+            console.error("[RandomNumberCmd] Error:", e); 
+            // messageUtil.sendBotMessage(ctx.channel.id, e.message);
         }
     }
 }));
