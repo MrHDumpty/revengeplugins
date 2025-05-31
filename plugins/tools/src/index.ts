@@ -49,15 +49,15 @@ commands.push(registerCommand({
     ],
     execute: (args, ctx) => {
         try {
-        if (args[2]?.value) {
-            messageUtil.sendBotMessage(ctx.channel.id, (Math.random() * (args[1].value - args[0].value) + args[0].value));
-        } else {
-            messageUtil.sendMessage(ctx.channel.id, { (Math.random() * (args[1].value - args[0].value) + args[0].value)) };
+            if (args[2]?.value) {
+                messageUtil.sendBotMessage(ctx.channel.id, (Math.random() * (args[1].value - args[0].value) + args[0].value));
+            } else {
+                messageUtil.sendMessage(ctx.channel.id, (Math.random() * (args[1].value - args[0].value) + args[0].value));
+            }
+        } catch(e) {
+            messageUtil.sendBotMessage(ctx.channel.id, e.message);
         }
-    } catch(e) {
-        messageUtil.sendBotMessage(ctx.channel.id, e.message);
     }
-}
 }));
 
 export const onUnload = () => {
