@@ -1,7 +1,6 @@
 import { registerCommand } from "@vendetta/commands";
-import { findByProps } from "@vendetta/metro";
+import { messageUtil } from "@vendetta/metro/common";
 let commands = [];
-const ClydeUtils = findByProps("sendBotMessage");
 
 const ApplicationCommandOptionType = {
     SUB_COMMAND: 1,
@@ -48,7 +47,17 @@ commands.push(registerCommand({
             type: ApplicationCommandOptionType.BOOLEAN,
         }
     ],
-    execute: (args, ctx) => args[2] ? window.sendMessage(ctx.channel.id, Math.random() * (args[1].value - args[0].value) + args[0].value) : window.sendMessage(ctx.channel.id, Math.random() * (args[1].value - args[0].value) + args[0].value)
+    execute: (args, ctx) => {
+        try {
+        if (args[2]?.value) {
+            messageUtil.sendBotMessage(ctx.channel.id, (Math.random() * (args[1].value - args[0].value) + args[0].value));
+        } else {
+            messageUtil.sendMessage(ctx.channel.id, { (Math.random() * (args[1].value - args[0].value) + args[0].value)) };
+        }
+    } catch(e) {
+        messageUtil.sendBotMessage(ctx.channel.id, e.message);
+    }
+}
 }));
 
 export const onUnload = () => {
